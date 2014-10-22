@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, request, url_for, redirect
 from flask.ext.sqlalchemy import SQLAlchemy
 import urllib2
+#from config import *
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
@@ -32,8 +33,9 @@ def home():
 def insert():
     if request.method == 'POST':
         try:
-            isbn = int(request.form['isbn'])
-            google_url = 'https://www.googleapis.com/books/v1/volumes?q=%s+isbn&key=AIzaSyDyvl-bqk_t6gDqG5C2dpHn6ZuTZqnJ7zo' % isbn
+            isbn = request.form['isbn']
+            google_url = 'https://www.googleapis.com/books/v1/volumes?q=%s+isbn' % isbn
+            return google_url
             response = urllib2.urlopen(google_url)
             html = response.read()
             return html
