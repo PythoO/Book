@@ -39,6 +39,7 @@ def insert():
             response = requests.get(google_url)
             html = response.text
             data = json.loads(html)
+            return data
             title = data['items']['volumeInfo']['title']
             book = Book(isbn)
             book.title = title
