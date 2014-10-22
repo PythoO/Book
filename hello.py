@@ -4,9 +4,9 @@ from flask.ext.sqlalchemy import SQLAlchemy
 import urllib2
 
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/book.db'
-app.debug = True
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/book.db'
+#app.debug = True
 db = SQLAlchemy(app)
 
 
