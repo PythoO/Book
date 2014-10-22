@@ -4,9 +4,24 @@
 
 {% block body %}
 <h1>Clovis and Ulrik Books</h1>
-    <ul>
+    {% if all_books %}
+    <table class="table table-striped" id="users-tbl">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>ISBN</th>
+            <th>Titre</th>
+        </tr>
+        </thead>
+        <tbody>
         {% for book in all_books %}
-        <li>{{ book.title }}</li>
+        <tr>
+            <td>{{ book.id }}</td>
+            <td>{{ book.isbn }}</td>
+            <td>{{ book.title }}</td>
+        </tr>
         {% endfor %}
-    </ul>
+        </tbody>
+    </table>
+    {% endif %}
 {% endblock %}

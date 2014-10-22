@@ -44,7 +44,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('hello') }}">Home Page</a></li>
+                    <li><a href="{{ url_for('home') }}">Home Page</a></li>
                     <li><a href="{{ url_for('insert') }}">Add a Book</a></li>
                 </ul>
             </div>
@@ -52,7 +52,7 @@
         </div>
     </div>
 
-    <div>
+    <div class="content">
         {% for message in get_flashed_messages() %}
         <div class="flash">{{ message }}</div>
         {% endfor %}
