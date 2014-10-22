@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}Insert | Books{%endblock%}
+
+{% block body %}
+<h1>Add a Book</h1>
+
+<form method="post" class="form-horizontal" action="{{ url_for('insert') }}">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">ISBN:</label>
+        <div class="col-sm-10">
+            <input type="text" name="isbn" placeholder="ISBN">
+        </div>
+    </div>
+
+    <button class="btn btn-success" type="submit">
+        <span class="glyphicon glyphicon-save"></span> Add a Book
+    </button>
+
+</form>
+
+{% endblock %}
