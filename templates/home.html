@@ -4,4 +4,9 @@
 
 {% block body %}
 <h1>Clovis and Ulrik Books</h1>
+    <ul>
+        {% for book in all_books %}
+        <li>{{ book.title }}</li>
+        {% endfor %}
+    </ul>
 {% endblock %}
