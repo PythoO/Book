@@ -35,7 +35,6 @@ def insert():
         try:
             isbn = request.form['isbn']
             google_url = 'https://www.googleapis.com/books/v1/volumes?q=%s+isbn' % isbn
-            return google_url
             response = urllib2.urlopen(google_url)
             html = response.read()
             return html
