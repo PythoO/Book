@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, request, url_for, redirect
 from flask.ext.sqlalchemy import SQLAlchemy
+import requests
 import urllib2
 import json
 
@@ -35,8 +36,8 @@ def insert():
         try:
             isbn = request.form['isbn']
             google_url = 'https://www.googleapis.com/books/v1/volumes?q=%s+isbn' % isbn
-            response = urllib2.urlopen(google_url)
-            html = response.read()
+            response = requests.get(google_url)
+            html = response.text
             data = json.loads(html)
             title = data['items']['volumeInfo']['title']
             book = Book(isbn)
