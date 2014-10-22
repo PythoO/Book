@@ -39,8 +39,8 @@ def insert():
             google_url = 'https://www.googleapis.com/books/v1/volumes?q=%s+isbn' % isbn
             response = requests.get(google_url)
             html = response.text
-            #data = json.loads(html)
-            return html
+            data = json.loads(html)
+            return data
             title = data['items']['volumeInfo']['title']
             book = Book(isbn)
             book.title = title
