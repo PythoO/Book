@@ -35,16 +35,12 @@ def insert():
         try:
             isbn = request.form['isbn']
             google_url = 'https://www.googleapis.com/books/v1/volumes?q=%s+isbn' % isbn
-            try:
-                response = request.get(google_url)
-            except ValueError:
-                return 'Connection error'
-            html = response.text
+            response = urllib2.urlopen(google_url)
+            html = response.read()
             data = json.loads(html)
-
-            book_title = data['volumeInfo']['title']
+            title = data['items']['volumeInfo']['title']
             book = Book(isbn)
-            book.title = book_title
+            book.title = title
             db.session.add(book)
             db.session.commit()
             return redirect(url_for('home'))
