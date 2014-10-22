@@ -3,8 +3,7 @@ from flask import Flask, render_template, request, url_for, redirect
 from flask.ext.sqlalchemy import SQLAlchemy
 import requests
 import urllib2
-import simplejson
-import json
+import simplejson as json
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
