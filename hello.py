@@ -42,8 +42,7 @@ def insert():
             data = json.loads(html)
         except Exception as e:
             return e.message
-        return data['items'][0][u'volumeInfo'][u'title']
-
+        title = data['items'][0][u'volumeInfo'][u'title']
         string_authors = ''
         try:
             authors = data['items'][0][u'volumeInfo'][u'authors']
