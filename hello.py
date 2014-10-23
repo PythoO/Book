@@ -33,20 +33,20 @@ def home():
 @app.route('/insert', methods=['GET', 'POST'])
 def insert():
     if request.method == 'POST':
+        isbn = request.form['isbn']
+        google_url = 'https://www.googleapis.com/books/v1/volumes?q=%s+isbn' % isbn
+        response = requests.get(google_url)
+        html = response.text
         try:
-            isbn = request.form['isbn']
-            google_url = 'https://www.googleapis.com/books/v1/volumes?q=%s+isbn' % isbn
-            response = requests.get(google_url)
-            html = response.text
             data = json.loads(html)
-            title = data['items']['title']
-            book = Book(isbn)
-            book.title = title
-            db.session.add(book)
-            db.session.commit()
-            return redirect(url_for('home'))
-        except ValueError as error:
-            return error
+        except Exception as e:
+            return e.message
+        title = data['items']['title']
+        book = Book(isbn)
+        book.title = title
+        db.session.add(book)
+        db.session.commit()
+        return redirect(url_for('home'))
     return render_template("insert.html")
 
 
