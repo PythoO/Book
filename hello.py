@@ -6,9 +6,9 @@ import urllib2
 import simplejson as json
 
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/book.db'
-app.debug = True
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/book.db'
+#app.debug = True
 db = SQLAlchemy(app)
 
 
@@ -38,7 +38,6 @@ def insert():
             google_url = 'https://www.googleapis.com/books/v1/volumes?q=%s+isbn' % isbn
             response = requests.get(google_url)
             html = response.text
-            #html = '{"kind": "books#volumes","totalItems": 1}'
             data = json.loads(html)
             title = data['items']['title']
             book = Book(isbn)
