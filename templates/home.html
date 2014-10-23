@@ -5,12 +5,15 @@
 {% block body %}
 <h1>Clovis and Ulrik Books</h1>
     {% if all_books %}
+    <div ng-controller="bookController"></div>
     <table class="table table-striped" id="users-tbl">
         <thead>
         <tr>
             <th>#</th>
             <th>ISBN</th>
-            <th>Titre</th>
+            <th><a href="" ng-click="predicate = 'titre '; reverse=!reverse">Titre</a></th>
+            <th>Auteur(s)</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -19,6 +22,16 @@
             <td>{{ book.id }}</td>
             <td>{{ book.isbn }}</td>
             <td>{{ book.title }}</td>
+            <td>{{ book.authors }}</td>
+            <td>
+                <form action="{{ url_for('delete') }}" method="post">
+                 <input type="hidden" name="book_id" value="{{ book.id }}" />
+                <button class="btn btn-success" type="submit">
+                    <span class="glyphicon glyphicon-delete"></span> Remove
+                </button>
+                </form>
+
+            </td>
         </tr>
         {% endfor %}
         </tbody>
