@@ -38,12 +38,12 @@ def insert():
         google_url = 'https://www.googleapis.com/books/v1/volumes?q=%s+isbn' % isbn
         response = requests.get(google_url)
         html = response.text
-        #print html.encode('utf-8')
         try:
             data = json.loads(html)
         except Exception as e:
             return e.message
-        title = data['items'][0][u'volumeInfo'][u'title']
+        return data['items'][0][u'volumeInfo'][u'title']
+
         string_authors = ''
         try:
             authors = data['items'][0][u'volumeInfo'][u'authors']
