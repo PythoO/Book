@@ -16,7 +16,7 @@ class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200))
     authors = db.Column(db.String(200))
-    isbn = db.Column(db.Integer)
+    isbn = db.Column(db.BigInteger)
 
     def __init__(self, isbn):
         self.isbn = isbn
