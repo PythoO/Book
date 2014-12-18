@@ -8,13 +8,14 @@ from flask.ext.login import LoginManager, login_required, login_user, logout_use
 from models import db, Book, User
 from google_api import GoogleApi
 
+
 app = Flask(__name__)
 db.init_app(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-app.config.from_object(__name__)
-app.config.from_envvar('BOOK_SETTINGS')
+app.debug = os.environ['DEBUG']
+app.secret_key = os.environ['SECRET_KEY']
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 
 with app.app_context():
