@@ -9,6 +9,7 @@ argparse==1.2.1
 gunicorn==19.1.1
 itsdangerous==0.24
 pbr==0.10.4
+psycopg2==2.5.4
 requests==2.5.0
 simplejson==3.6.5
 six==1.8.0
