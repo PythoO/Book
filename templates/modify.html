@@ -1,20 +1,35 @@
 {% extends "layout.html" %}
 
-{% block title %}Insert | Books{%endblock%}
+{% block title %}Modify | Books{%endblock%}
 
 {% block body %}
-<h1>Add a Book</h1>
+<h1>Modify a Book</h1>
 
-<form method="post" class="form-horizontal" action="{{ url_for('insert') }}">
+<form method="post" class="form-horizontal" action="{{ url_for('update') }}">
+    <input type="hidden" name="book_id" placeholder="{{ book.id }}" value="{{ book.id }}">
     <div class="form-group">
         <label class="col-sm-2 control-label">ISBN:</label>
         <div class="col-sm-10">
-            <input type="text" name="isbn" placeholder="ISBN">
+            <input type="text" name="isbn" placeholder="{{ book.isbn }}" value="{{ book.isbn }}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Title:</label>
+        <div class="col-sm-10">
+            <input type="text" name="title" placeholder="{{ book.title }}" value="{{ book.title }}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Authors:</label>
+        <div class="col-sm-10">
+            <input type="text" name="authors" placeholder="{{ book.authors }}" value="{{ book.authors }}">
         </div>
     </div>
 
     <button class="btn btn-success" type="submit">
-        <span class="glyphicon glyphicon-save"></span> Add a Book
+        <span class="glyphicon glyphicon-save"></span> Modify a Book
     </button>
 
 </form>

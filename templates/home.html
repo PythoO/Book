@@ -13,7 +13,9 @@
             <th>ISBN</th>
             <th><a href="" ng-click="predicate = 'titre '; reverse=!reverse">Titre</a></th>
             <th>Auteur(s)</th>
+            {% if current_user.is_authenticated() %}
             <th>Actions</th>
+            {% endif %}
         </tr>
         </thead>
         <tbody>
@@ -23,18 +25,40 @@
             <td>{{ book.isbn }}</td>
             <td>{{ book.title }}</td>
             <td>{{ book.authors }}</td>
+            {% if current_user.is_authenticated() %}
             <td>
                 <form action="{{ url_for('delete') }}" method="post">
-                 <input type="hidden" name="book_id" value="{{ book.id }}" />
-                <button class="btn btn-success" type="submit">
+                <input type="hidden" name="book_id" value="{{ book.id }}" />
+                <button class="btn btn-sm btn-warning pull-right" type="submit" onclick="return confirmation();">
                     <span class="glyphicon glyphicon-delete"></span> Remove
                 </button>
                 </form>
 
+                <form action="{{ url_for('modify') }}" method="post">
+                <input type="hidden" name="book_id" value="{{ book.id }}" />
+                <button class="btn btn-sm btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-delete"></span> Modify
+                </button>
+                </form>
             </td>
+            {% endif %}
         </tr>
         {% endfor %}
         </tbody>
     </table>
     {% endif %}
 {% endblock %}
+
+
+{% block javascript %}
+<script>
+function confirmation() {
+    var r = confirm("Are you sure !!!");
+    if (r == true) {
+        return true;
+    } else {
+        return false;
+    }
+}
+</script>
+{%endblock %}
