@@ -6,7 +6,7 @@ MarkupSafe==0.23
 SQLAlchemy==0.9.8
 Werkzeug==0.9.6
 argparse==1.2.1
-gunicorn==19.1.1
+gunicorn==19.9.0
 itsdangerous==0.24
 pbr==0.10.4
 psycopg2==2.5.4
